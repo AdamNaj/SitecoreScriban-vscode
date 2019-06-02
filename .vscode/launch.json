@@ -1,0 +1,21 @@
+// A launch configuration that launches the extension inside a new window
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "name": "Launch Extension",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceRoot}",
+                "${workspaceFolder}\\.examples\\gallery.scriban", 
+                "${workspaceFolder}\\.examples\\empty.scriban" 
+            ],
+            "outFiles": [
+                "${workspaceFolder}/out/**/*.js"
+            ],
+            "preLaunchTask": "npm: watch"
+        }
+    ]
+}

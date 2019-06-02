@@ -1,0 +1,25 @@
+{{ if sc_evaluate item "Is Image" # example of rule evaluation }}
+  {{ sc_editframe item "Gallery Image" # example of edit frame }}
+<a class="field-image">
+    <a title="{{ sc_raw item 'ImageTitle' }}" {{ # raw value from a field }} href="{{sc_follow item 'image' | sc_medialink }}"> {{ # get link from a linked media item }}
+       {{ sc_field item ["Link2", "Image2", "Image"] [["data-2",2],[3,4], "ssss"] }}
+    </a>
+</a>
+  {{ sc_endeditframe }}
+{{end}}
+
+{{ if item.template_name == "Gallery Video" }}
+  {{ sc_editframe item "Gallery Video" }}
+    {{ if (sc_raw item "VideoID") == "" && (sc_raw item "VideoThumbnail") == "" }}
+      <span>[Edit Gallery Video here]</span>
+    {{ else }}
+      <a title="{{sc_raw item 'VideoTitle' }}" href="http://www.youtube.com/watch?v={{ sc_raw item 'VideoID'}}">
+        <img src="{{ model.thumbnail_url }}" alt="{{sc_raw item 'VideoDescription'}}" data-title="{{sc_raw item 'VideoTitle'}}" data-description="{{sc_raw item 'VideoDescription'}}" ></img>
+      </a>
+    {{end}}
+  {{ sc_endeditframe }}
+{{end}}
+
+{{  }}
+
+{{ | }}

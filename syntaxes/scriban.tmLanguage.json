@@ -1,0 +1,150 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Scriban",
+  "scopeName": "text.html.scriban",
+  "fileTypes": [
+    "scriban"
+  ],
+  "uuid": "f7870e1f-dfab-4130-91ba-22e786365910",
+  "patterns": [
+    {
+      "name": "comment.block.scriban",
+      "begin": "{(%+){",
+      "end": "}\\1}"
+    },
+    {
+      "name": "language.script.scriban",
+      "begin": "{{~?",
+      "end": "~?}}",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#literals"
+        },
+        {
+          "include": "#language-functions"
+        },
+        {
+          "include": "#sitecore-functions"
+        },
+        {
+          "include": "#objects"
+        }
+      ]
+    },
+    {
+      "include": "text.html.basic"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.block.scriban",
+          "begin": "##",
+          "end": "(?=}})|##"
+        },
+        {
+          "name": "comment.line.scriban",
+          "begin": "(^\\s+)?(?=#)",
+          "end": "(?=~?}}|$)"
+        }
+      ]
+    },
+    "keywords": {
+      "name": "keyword.type.scriban",
+      "match": "\\b(break|capture|case|continue|else|empty|end|for|func|if|import|in|include|readonly|ret|tablerow|this|when|while|with|wrap)\\b"
+    },
+    "language-functions": {
+      "name": "support.class.scriban",
+      "match": "\\b(array|date|html|math|object|regex|string|timespan)\\b"
+    },
+    "sitecore-functions": {
+      "name": "support.function.scriban",
+      "match": "\\b(sc_decorate|sc_editframe|sc_endeditframe|sc_evaluate|sc_execute|sc_field|sc_follow|sc_followmany|sc_link|sc_medialink|sc_parameter|sc_query|sc_raw)\\b"
+    },
+    "objects": {
+      "name": "support.variable.scriban",
+      "match": "\\b(datasource|geospatial|item|model|page|site)\\b"
+    },
+    "literals": {
+      "patterns": [
+        {
+          "include": "#numeric-literal"
+        },
+        {
+          "include": "#string-literal"
+        },
+        {
+          "include": "#bool-literal"
+        }
+      ]
+    },
+    "bool-literal": {
+      "patterns": [
+        {
+          "name": "keyword.bool.scriban",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "numeric-literal": {
+      "patterns": [
+        {
+          "name": "constant.numeric.decimal.scriban",
+          "match": "\\b([0-9]+)?\\.[0-9]+((e|E)[0-9]+)?\\b"
+        },
+        {
+          "name": "constant.numeric.decimal.scriban",
+          "match": "\\b[0-9]+(e|E)[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.decimal.scriban",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "string-literal": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.scriban",
+          "begin": "(\")",
+          "end": "\\1",
+          "patterns": [
+            {
+              "name": "constant.character.escape.scriban",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.scriban",
+          "begin": "(')",
+          "end": "\\1",
+          "patterns": [
+            {
+              "name": "constant.character.escape.scriban",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.other.scriban",
+          "begin": "`",
+          "end": "`",
+          "patterns": [
+            {
+              "name": "constant.character.escape.scriban",
+              "match": "``"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

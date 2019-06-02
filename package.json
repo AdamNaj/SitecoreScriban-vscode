@@ -1,0 +1,75 @@
+{
+	"name": "sitecore-scriban",
+	"displayName": "Sitecore Scriban",
+	"description": "Syntax Coloring for Scriban Templating Language with Sitecore Extensions",
+	"version": "0.1.0",
+	"publisher": "adamnaj",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/AdamNaj/SitecoreScriban-vscode"
+	},
+	"bugs": {
+		"url": "https://github.com/AdamNaj/SitecoreScriban-vscode/issues"
+	},
+	"homepage": "https://github.com/AdamNaj/SitecoreScriban-vscode",
+	"keywords": [
+		"templating",
+		"scriban",
+		"sitecore"
+	],
+	"license": "BSD2-clause",
+	"engines": {
+		"vscode": "^1.32.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"icon": "res/sxa.png",
+	"contributes": {
+		"languages": [
+			{
+				"id": "scriban",
+				"aliases": [
+					"Sitecore Scriban Html",
+					"scriban"
+				],
+				"extensions": [
+					".scriban"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "scriban",
+				"scopeName": "text.html.scriban",
+				"path": "./syntaxes/scriban.tmLanguage.json"
+			},
+			{
+				"path": "./syntaxes/injection.tmLanguage.json",
+				"scopeName": "scriban-html.injection",
+				"injectTo": [
+					"source.html",
+					"source.scriban",
+					"source.html"
+				]
+			}
+		]
+	},
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc  -p ./",
+		"lint": "tslint -p ./",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^10.12.18",
+		"tslint": "^5.16.0",
+		"typescript": "^3.4.5",
+		"@types/vscode": "^1.32.0"
+	}
+}

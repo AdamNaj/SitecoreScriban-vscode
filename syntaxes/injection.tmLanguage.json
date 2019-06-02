@@ -1,0 +1,23 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "fileTypes": [],
+  "injectionSelector": "L:string.quoted.double.html, L:string.quoted.single.html",
+  "scopeName": "text.html.scriban.injection",
+  "patterns": [
+    {
+      "name": "comment.block.scriban.inline",
+      "begin": "{(%+){",
+      "end": "}\\1}"
+    },
+    {
+      "name": "language.script.scriban.inline",
+      "begin": "{{~?",
+      "end": "~?}}",
+      "patterns": [
+        {
+          "include": "language.script.scriban"
+        }
+      ]
+    }
+  ]
+}
