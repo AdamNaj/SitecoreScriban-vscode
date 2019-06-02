@@ -407,4 +407,91 @@ export const languageObjects = [
 			},
 		]
 	},
+	{
+		"name": "for",
+		"methods": [
+			{
+				"name": "index",
+				"template": "index",
+				"description": "The current index of the for loop",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+			{
+				"name": "rindex",
+				"template": "rindex",
+				"description": "The current index of the for loop starting from the end of the list",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+			{
+				"name": "first",
+				"template": "first",
+				"description": "A boolean indicating whether this is the first step of the loop",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+			{
+				"name": "last",
+				"template": "last",
+				"description": "A boolean indicating whether this is the last step of the loop",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+			{
+				"name": "even",
+				"template": "even",
+				"description": "A boolean indicating whether this is an even step of the loop",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+			{
+				"name": "odd",
+				"template": "odd",
+				"description": "A boolean indicating whether this is an odd row in the loop",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+			{
+				"name": "changed",
+				"template": "changed",
+				"description": "A boolean indicating whether a current value of this iteration changed from previous step",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+		]
+	},
+	{
+		"name": "while",
+		"methods": [
+			{
+				"name": "index",
+				"template": "index",
+				"description": "The current index of the for loop",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+			{
+				"name": "first",
+				"template": "first",
+				"description": "A boolean indicating whether this is the first step of the loop",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+			{
+				"name": "even",
+				"template": "even",
+				"description": "A boolean indicating whether this is an even step of the loop",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+			{
+				"name": "odd",
+				"template": "odd",
+				"description": "A boolean indicating whether this is an odd row in the loop",
+				"pipeTemplate": "",
+				"pipeDescription": ""
+			},
+		]
+	},
 ];
