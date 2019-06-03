@@ -1,3 +1,5 @@
+import { language } from "./language";
+
 /*---------------------------------------------------------
  * Copyright (C) Adam Najmanowicz. All rights reserved.
  *--------------------------------------------------------*/
@@ -50,12 +52,12 @@ export const sitecoreFunctions = [
     },
     {
         "name": "sc_translate",
-        "description": "",
+        "description": "Translate a label to the context language or the language specified as a parameter using the site dictionary.",
         "validationRegEx": "",
-        "template": "sc_translate",
-        "codeBlock" : "",
-        "pipeTemplate": "",
-        "pipeCodeBlock" : "",
+        "template": "sc_translate \"${1:phrase}\" ${2:\"languagename\"",
+        "codeBlock" : "sc_translate \"phrase\" \"languagename\"}",
+        "pipeTemplate": "sc_translate ${1:\"languagename\"}",
+        "pipeCodeBlock" : "sc_translate \"languagename\"",
     },
     {
         "name": "sc_editframe",

@@ -108,9 +108,9 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}
 
-	function objectFunctionCompletion(methodName: string, template: string, documentation: string): vscode.CompletionItem {
+	function objectFunctionCompletion(objectName: string, methodName: string, template: string, documentation: string): vscode.CompletionItem {
 		const completion = new vscode.CompletionItem(methodName);
-		completion.documentation = new vscode.MarkdownString(documentation);
+		completion.documentation = new vscode.MarkdownString(documentation).appendCodeblock("{{ "+objectName+template.replace(/(\${\d+:)|(})/g,"")+" }}");
 		completion.kind = vscode.CompletionItemKind.Method;
 		completion.insertText = new vscode.SnippetString(template);
 		return completion;
@@ -134,12 +134,14 @@ export function activate(context: vscode.ExtensionContext) {
 					if (linePrefix.endsWith(objectName)) {
 						if (linePrefix.endsWith('| ' + objectName)) {
 							embeddedObject.methods.forEach(element => {
-								results.push(objectFunctionCompletion(element.name, element.pipeTemplate, element.pipeDescription))
+								var description = element.description + "... [more](https://github.com/lunet-io/scriban/blob/master/doc/builtins.md#"+embeddedObject.name+element.name+")";
+								results.push(objectFunctionCompletion(objectName, element.name, element.pipeTemplate, description))
 							});
 						}
 						else {
 							embeddedObject.methods.forEach(element => {
-								results.push(objectFunctionCompletion(element.name, element.template, element.description))
+								var description = element.description + "... [more](https://github.com/lunet-io/scriban/blob/master/doc/builtins.md#"+embeddedObject.name+element.name+")";
+								results.push(objectFunctionCompletion(objectName, element.name, element.template, description))
 							});
 						}
 					}
@@ -149,7 +151,7 @@ export function activate(context: vscode.ExtensionContext) {
 					var itemPrefix = embeddedItem + ".";
 					if (linePrefix.endsWith(itemPrefix)) {
 						itemMethods.forEach(element => {
-							results.push(objectFunctionCompletion(element.name, element.template, element.name))
+							results.push(objectFunctionCompletion(embeddedItem, element.name, element.template, element.name))
 						});
 
 					}

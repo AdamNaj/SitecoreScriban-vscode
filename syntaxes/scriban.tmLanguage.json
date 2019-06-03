@@ -66,11 +66,11 @@
     },
     "sitecore-functions": {
       "name": "support.function.scriban",
-      "match": "\\b(sc_decorate|sc_editframe|sc_endeditframe|sc_evaluate|sc_execute|sc_field|sc_follow|sc_followmany|sc_link|sc_medialink|sc_parameter|sc_query|sc_raw)\\b"
+      "match": "\\b(sc_decorate|sc_editframe|sc_endeditframe|sc_evaluate|sc_execute|sc_field|sc_follow|sc_followmany|sc_link|sc_medialink|sc_parameter|sc_query|sc_translate|sc_raw)\\b"
     },
     "objects": {
       "name": "support.variable.scriban",
-      "match": "\\b(datasource|geospatial|item|model|page|site)\\b"
+      "match": "\\b(i_datasource|o_geospatial|i_home|i_item|o_language|o_model|i_page|i_site)\\b"
     },
     "literals": {
       "patterns": [
