@@ -3,8 +3,8 @@ import { languageObjects } from './languageObjects';
 import { itemMethods, embeddedItems, embeddedItemCompletions } from './sitecoreObjects';
 import { sitecoreFunctions } from './sitecoreFunctions';
 import { ScribanSnippet } from './types';
-import { language } from './language';
-import { getCodeBlockFromSnippet } from './completionLogic';
+import { language } from './languageSyntax';
+import { getCodeBlockFromSnippet } from './autoCompletion';
 import { isInMoustaches, lineHasPipe } from './regularExpressions';
 
 export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string, results: vscode.CompletionItem[], kind: vscode.CompletionItemKind) {
@@ -14,7 +14,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 		commitCharacterCompletion.commitCharacters = ['.'];
 		commitCharacterCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
 		var inMoustaches = isInMoustaches.test(linePrefix);
-		commitCharacterCompletion.detail = snippet.description;
+		//commitCharacterCompletion.detail = snippet.description;
 
 		// for snippets that can only be insertedin special context like "offset:" in "for" loop.
 		if (snippet.validationRegEx !== "") {
@@ -33,7 +33,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 					continue;
 				}
 				commitCharacterCompletion.insertText = new vscode.SnippetString(snippet.pipeTemplate + " ");
-				commitCharacterCompletion.documentation = new vscode.MarkdownString("").appendCodeblock(getCodeBlockFromSnippet(snippet.pipeTemplate)); // (snippet.pipeCodeBlock);
+				commitCharacterCompletion.documentation = new vscode.MarkdownString(snippet.description).appendCodeblock(getCodeBlockFromSnippet(snippet.pipeTemplate)).appendCodeblock("\n \n "); // (snippet.pipeCodeBlock);
 			} else {
 				// if not after pipe, just within moustaches {{ ... }}
 				//template must be wrapped with moustaches - those are used inside of pure-HTML snippets
@@ -47,7 +47,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 					continue;
 				}
 				commitCharacterCompletion.insertText = new vscode.SnippetString(template);
-				commitCharacterCompletion.documentation = new vscode.MarkdownString("").appendCodeblock(getCodeBlockFromSnippet(template)) // snippet.codeBlock);
+				commitCharacterCompletion.documentation = new vscode.MarkdownString(snippet.description).appendCodeblock(getCodeBlockFromSnippet(template)).appendCodeblock("\n \n ") // snippet.codeBlock);
 			}
 		} else {
 
@@ -60,7 +60,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 				documentation = getCodeBlockFromSnippet(snippet.template.join("\n"), false);
 			}
 
-			commitCharacterCompletion.documentation = new vscode.MarkdownString("").appendCodeblock(documentation); // snippet.codeBlock);
+			commitCharacterCompletion.documentation = new vscode.MarkdownString(snippet.description).appendCodeblock(documentation).appendCodeblock("\n \n "); // snippet.codeBlock);
 		}
 		results.push(commitCharacterCompletion);
 	}

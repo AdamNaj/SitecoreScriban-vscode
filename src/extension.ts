@@ -9,8 +9,8 @@ import { languageObjects } from './languageObjects';
 import { itemMethods, embeddedItems, embeddedItemCompletions } from './sitecoreObjects';
 import { sitecoreFunctions } from './sitecoreFunctions';
 import { ScribanSnippet } from './types';
-import { language } from './language';
-import { provideGlobalCompletionItems, provideFunctionCompletionItems } from './completionLogic';
+import { language } from './languageSyntax';
+import { provideGlobalCompletionItems, provideFunctionCompletionItems } from './autoCompletion';
 
 export function activate(context: vscode.ExtensionContext) {
 

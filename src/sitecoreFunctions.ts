@@ -1,4 +1,4 @@
-import { language } from "./language";
+import { language } from "./languageSyntax";
 /*---------------------------------------------------------
  * Copyright (C) Adam Najmanowicz. All rights reserved.
  *--------------------------------------------------------*/

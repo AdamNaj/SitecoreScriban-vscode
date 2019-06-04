@@ -3,9 +3,9 @@ import { languageObjects } from './languageObjects';
 import { itemMethods, embeddedItems, embeddedItemCompletions } from './sitecoreObjects';
 import { sitecoreFunctions } from './sitecoreFunctions';
 import { ScribanSnippet } from './types';
-import { language } from './language';
+import { language } from './languageSyntax';
 import { isInFunctionCompletion, codeBlockFromTemplate, stripFunctionNameFromLine } from './regularExpressions';
-import { snippetCompletion, objectFunctionCompletion } from './completionItemCreation';
+import { snippetCompletion, objectFunctionCompletion } from './autoCompletionItem';
 
 
 export function getCodeBlockFromSnippet(snippet: string, includeBrackets: boolean = true) {
