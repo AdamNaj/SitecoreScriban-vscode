@@ -7,7 +7,5 @@ export interface ScribanSnippet {
     description: string;
     validationRegEx: string;
     template: string | string[];
-    codeBlock: string;
     pipeTemplate: string;
-    pipeCodeBlock: string;
 }

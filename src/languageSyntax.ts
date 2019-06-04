@@ -1,8 +1,10 @@
+import { ScribanSnippet } from "./types";
+
 /*---------------------------------------------------------
  * Copyright (C) Adam Najmanowicz. All rights reserved.
  *--------------------------------------------------------*/
 
-export const language = [
+export const language: ScribanSnippet[] = [
     {
         "name": "ifelse",
         "description": "If/else conditional statement",
@@ -14,9 +16,7 @@ export const language = [
             "\t$3",
             "{{ end }}"
         ],
-        "codeBlock" : "{{ if condition }}\n...\n{{else}}\n...\n{{end}}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "if",
@@ -27,9 +27,7 @@ export const language = [
             "\t$2",
             "{{ end }}"
         ],
-        "codeBlock" : "{{ if condition }}\n...\n{{end}}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "else",
@@ -39,9 +37,7 @@ export const language = [
             "{{ else }}",
             "\t"
         ],
-        "codeBlock" : "...\n{{else}}\n...",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "elseif",
@@ -51,9 +47,7 @@ export const language = [
             "{{ else if ${1:condition} }}",
             "\t$2"
         ],
-        "codeBlock" : "...\n{{ else if condition }}\n...",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "while",
@@ -64,9 +58,7 @@ export const language = [
             "\t$2",
             "{{ end }}"
         ],
-        "codeBlock" : "{{ while condition }}\n...\n{{ end }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "case",
@@ -82,9 +74,7 @@ export const language = [
             "\t\t$6",
             "{{ end }}"
         ],
-        "codeBlock" : "{{ case variable }}\n\t{{when value1}}\n\t...\n\t{{when value2}}\n\t...\n\t{{else}}\n\t...\n{{ end }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "when",
@@ -94,9 +84,7 @@ export const language = [
             "{{ when ${2:value1} }}",
             "$3",
         ],
-        "codeBlock" : "{{when value1}}\n\t...",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "for",
@@ -107,54 +95,42 @@ export const language = [
             "\t$3",
             "{{ end }}"
         ],
-        "codeBlock" : "{{ for item in collection }}\n\t...\n{{ end }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "limit",
         "description": "Allows to limit the iteration of the loop to the specified max count",
         "validationRegEx": "[{][^}\\n]+\\sfor\\s[^}\\n]+$",
         "template": "limit:${1:max}",
-        "codeBlock" : "{{ for item in collection limit: max }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "offset",
         "description": "Allows to start the iteration of the loop at the specified zero-based index",
         "validationRegEx": "[{][^}\\n]+\\sfor\\s[^}\\n]+$",
         "template": "offset:${1:max}",
-        "codeBlock" : "{{ for item in collection offset: start }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "reversed",
         "description": "Allows to reverse the iteration on the elements",
         "validationRegEx": "[{][^}\\n]+\\sfor\\s[^}\\n]+$",
         "template": "reversed",
-        "codeBlock" : "{{ for item in collection reversed }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "break",
         "description": "The break statement allows to exit a loop early",
         "validationRegEx": "",
         "template": "break",
-        "codeBlock" : "\n{{ break }}\n",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "continue",
         "description": "The continue statement allows to skip the rest of a loop and continue on the next step",
         "validationRegEx": "",
         "template": "continue",
-        "codeBlock" : "\n{{ continue }}\n",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "tablerow",
@@ -165,9 +141,7 @@ export const language = [
             "\t$3",
             "{{ end }}"
         ],
-        "codeBlock" : "{{ tablerow variable in expression }}\n...\n{{ end }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "capture",
@@ -178,18 +152,14 @@ export const language = [
             "\t$3",
             "{{ end }}"
         ],
-        "codeBlock" : "{{ capture storeInVariable }}\n\tCapture this {{ date.now }} \n{{ end }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "readonly",
         "description": "The readonly statement prevents a variable for subsequent assignments:",
         "validationRegEx": "",
         "template": "readonly ${1:variable}",
-        "codeBlock" : "{{ readonly variable }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "with",
@@ -200,18 +170,14 @@ export const language = [
             "\t$3",
             "{{ end }}"
         ],
-        "codeBlock" : "{{ with variable }}\n\t...\n{{ end }}",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "ret",
         "description": "The return statement is used to abort further rendering.",
         "validationRegEx": "",
         "template": "ret",
-        "codeBlock" : "This text will be rendered.\n{{ ret }}\nThis text will not be rendered.",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
     {
         "name": "",
@@ -221,8 +187,6 @@ export const language = [
             "",
             "\t"
         ],
-        "codeBlock" : "\n...\n",
         "pipeTemplate": "",
-        "pipeCodeBlock" : "",
     },
 ]
