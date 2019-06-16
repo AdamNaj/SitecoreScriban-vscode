@@ -2,7 +2,7 @@
  * Copyright (C) Adam Najmanowicz. All rights reserved.
  *--------------------------------------------------------*/
 
-export const embeddedItems = ["item", "site", "datasource", "page"];
+export const embeddedItems = ["i_home", "i_item", "i_site", "i_datasource", "i_page"];
 
 export const embeddedItemCompletions = [
 	{
@@ -50,23 +50,87 @@ export const embeddedItemCompletions = [
 export const itemMethods =
 	[
 		{
-			"name": "template_name",
+			"name": "...",
 			"template": "",
+			"description": "Type the name of the field to use it. (cannot contain spaces)",
+		},
+		{
+			"name": "template_name",
+			"template": "template_name",
 			"description": "",
 		},
 		{
 			"name": "children",
-			"template": "",
+			"template": "children",
 			"description": "",
 		},
 		{
-			"name": "",
-			"template": "",
+			"name": "parent",
+			"template": "parent",
 			"description": "",
 		},
 		{
-			"name": "",
-			"template": "",
+			"name": "template_id",
+			"template": "template_id",
+			"description": "",
+		},
+		{
+			"name": "version",
+			"template": "version",
+			"description": "",
+		},
+		{
+			"name": "path",
+			"template": "path",
+			"description": "",
+		},
+		{
+			"name": "language",
+			"template": "language",
+			"description": "",
+		},
+		{
+			"name": "has_children",
+			"template": "has_children",
+			"description": "",
+		},
+		{
+			"name": "display_name",
+			"template": "display_name",
+			"description": "",
+		},
+		{
+			"name": "name",
+			"template": "name",
+			"description": "",
+		},
+		{
+			"name": "url",
+			"template": "url",
+			"description": "",
+		},
+		{
+			"name": "media_url",
+			"template": "media_url",
+			"description": "",
+		}
+	];
+
+	export const fieldMethods =
+	[
+		{
+			"name": "raw",
+			"template": "raw",
+			"description": "",
+		},
+		{
+			"name": "target",
+			"template": "target",
+			"description": "",
+		},
+		{
+			"name": "targets",
+			"template": "targets",
 			"description": "",
 		},
 	];

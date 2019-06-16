@@ -103,7 +103,7 @@ export function provideFunctionCompletionItems(document: vscode.TextDocument, po
         var itemPrefix = embeddedItem + ".";
         if (linePrefix.endsWith(itemPrefix)) {
             itemMethods.forEach(element => {
-                results.push(objectFunctionCompletion(embeddedItem, element.name, element.template, element.name, vscode.CompletionItemKind.Property))
+                results.push(objectFunctionCompletion(itemPrefix, element.name, element.template, element.description, vscode.CompletionItemKind.Property))
             });
 
         }

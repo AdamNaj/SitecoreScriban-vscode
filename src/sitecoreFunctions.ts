@@ -42,7 +42,7 @@ export const sitecoreFunctions = [
         "name": "sc_translate",
         "description": "Translate a label to the context language or the language specified as a parameter using the site dictionary.",
         "validationRegEx": "",
-        "template": "sc_translate \"${1:phrase}\" ${2:\"languagename\"",
+        "template": "sc_translate '${1:phrase}' ${2:'languagename'?}",
         "pipeTemplate": "sc_translate ${1:\"languagename\"}",
     },
     {
@@ -59,14 +59,14 @@ export const sitecoreFunctions = [
         "description": "Renders variant beneath the current script providing item to the pipeline",
         "validationRegEx": "",
         "template": "sc_execute ${1|i_item,i_datasource,i_home,i_page,i_site|} '${2:SubVariantName}'",
-        "pipeTemplate": "sc_execute '${2:SubVariantName}'",
+        "pipeTemplate": "sc_execute '${1:SubVariantName}'",
     },
     {
         "name": "sc_evaluate",
         "description": "Evaluates a rule stored in an item beneath the scriban script - allows specifying item for evaluation. Returns boolean value",
         "validationRegEx": "",
         "template": "sc_evaluate ${1|i_item,i_datasource,i_home,i_page,i_site|} '${2:Rule Name}'",
-        "pipeTemplate": "sc_evaluate '${2:Rule Name}'",
+        "pipeTemplate": "sc_evaluate '${1:Rule Name}'",
     },
     {
         "name": "",

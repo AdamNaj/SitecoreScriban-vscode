@@ -1,7 +1,7 @@
 {{ if sc_evaluate i_item "Is Image" # example of rule evaluation }}
   {{ sc_editframe i_item "Gallery Image" # example of edit frame }}
 <a class="field-image">
-    <a title="{{ sc_raw i_item 'ImageTitle' }}" {{ # raw value from a field }} href="{{sc_follow i_item 'image' | sc_medialink }}"> {{ # get link from a linked media item }}
+    <a title="{{ i_item.ImageTitle.Raw }}" {{ # raw value from a field }} href="{{i_item.Image.media_url }}"> {{ # get link from a linked media item }}
        {{ sc_field i_item ["Link2", "Image2", "Image"] [["data-2",2],[3,4], "ssss"] }}
     </a>
 </a>
@@ -10,16 +10,13 @@
 
 {{ if i_item.template_name == "Gallery Video" }}
   {{ sc_editframe i_item "Gallery Video" }}
-    {{ if (sc_raw i_item "VideoID") == "" && (sc_raw i_item "VideoThumbnail") == "" }}
+    {{ if (i_item.VideoID.raw ) == "" && (i_item.VideoThumbnail.raw) == "" }}
       <span>[Edit Gallery Video here]</span>
     {{ else }}
-      <a title="{{sc_raw i_item 'VideoTitle' }}" href="http://www.youtube.com/watch?v={{ sc_raw i_item 'VideoID'}}">
-        <img src="{{ o_model.thumbnail_url }}" alt="{{sc_raw i_item 'VideoDescription'}}" data-title="{{sc_raw i_item 'VideoTitle'}}" data-description="{{sc_raw i_item 'VideoDescription'}}" ></img>
+      <a title="{{i_item.VideoTitle.raw }}" href="http://www.youtube.com/watch?v={{ i_item.VideoID.raw }}">
+        <img src="{{ o_model.thumbnail_url }}" alt="{{ i_item.VideoDescription.raw }}" 
+             data-title="{{ i_item.VideoTitle.raw }}" data-description="{{ i_item.VideoDescription.raw }}" ></img>
       </a>
     {{end}}
   {{ sc_endeditframe }}
 {{end}}
-
-{{ array.r }}
-
-{{ | }}

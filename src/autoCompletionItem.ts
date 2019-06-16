@@ -5,7 +5,7 @@ import { sitecoreFunctions } from './sitecoreFunctions';
 import { ScribanSnippet } from './types';
 import { language } from './languageSyntax';
 import { getCodeBlockFromSnippet } from './autoCompletion';
-import { isInMoustaches, lineHasPipe } from './regularExpressions';
+import { isInMoustaches, lineHasPipe, snippetVariableCleanup } from './regularExpressions';
 
 export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string, results: vscode.CompletionItem[], kind: vscode.CompletionItemKind) {
 	for (let snippet of snippets) {
@@ -60,7 +60,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 				documentation = getCodeBlockFromSnippet(snippet.template.join("\n"), false);
 			}
 
-			commitCharacterCompletion.documentation = new vscode.MarkdownString(snippet.description).appendCodeblock(documentation).appendCodeblock("\n \n "); // snippet.codeBlock);
+			commitCharacterCompletion.documentation = new vscode.MarkdownString(snippet.description).appendCodeblock(documentation).appendCodeblock("\n "); // snippet.codeBlock);
 		}
 		results.push(commitCharacterCompletion);
 	}
@@ -68,7 +68,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 
 export function objectFunctionCompletion(objectName: string, methodName: string, template: string, documentation: string, icon: vscode.CompletionItemKind = vscode.CompletionItemKind.Method): vscode.CompletionItem {
 	const completion = new vscode.CompletionItem(methodName);
-	completion.documentation = new vscode.MarkdownString(documentation).appendCodeblock("{{ " + objectName + template.replace(/(\${\d+:)|(})/g, "") + " }}");
+	completion.documentation = new vscode.MarkdownString(documentation).appendCodeblock("{{ " + objectName + template.replace(snippetVariableCleanup, "") + " }}");
 	completion.kind = icon;
 	completion.insertText = new vscode.SnippetString(template);
 	return completion;

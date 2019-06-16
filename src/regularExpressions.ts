@@ -28,3 +28,4 @@ export const codeBlockFromTemplate  = new RegExp(/(\$[{]*\d+[:|]*)([\w\s-\.]*)([
     {{ sc_endeditframe }}
 */
 
+export const snippetVariableCleanup = new RegExp(/(\${\d+:)|(})/g);
