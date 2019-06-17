@@ -1,8 +1,8 @@
-import { ScribanSnippet } from "./types";
-
 /*---------------------------------------------------------
- * Copyright (C) Adam Najmanowicz. All rights reserved.
+ * Copyright (C) 2019 - Adam Najmanowicz. All rights reserved.
  *--------------------------------------------------------*/
+
+import { ScribanSnippet } from "./types";
 
 export const language: ScribanSnippet[] = [
     {

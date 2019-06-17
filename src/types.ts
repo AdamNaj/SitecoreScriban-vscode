@@ -1,5 +1,5 @@
 /*---------------------------------------------------------
- * Copyright (C) Adam Najmanowicz. All rights reserved.
+ * Copyright (C) 2019 - Adam Najmanowicz. All rights reserved.
  *--------------------------------------------------------*/
 
 export interface ScribanSnippet {

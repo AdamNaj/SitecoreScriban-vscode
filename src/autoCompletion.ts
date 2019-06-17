@@ -1,12 +1,16 @@
+/*---------------------------------------------------------
+ * Copyright (C) 2019 - Adam Najmanowicz. All rights reserved.
+ *--------------------------------------------------------*/
+
 import * as vscode from 'vscode';
 import { languageObjects } from './languageObjects';
-import { itemMethods, embeddedItems, embeddedItemCompletions } from './sitecoreObjects';
+import { itemMethods, embeddedItemCompletions, fieldMethods } from './sitecoreObjects';
 import { sitecoreFunctions } from './sitecoreFunctions';
-import { ScribanSnippet } from './types';
 import { language } from './languageSyntax';
-import { isInFunctionCompletion, codeBlockFromTemplate, stripFunctionNameFromLine } from './regularExpressions';
+import { isInFunctionCompletion, codeBlockFromTemplate, stripFunctionNameFromLine, isInFieldCompletion, isInScriban } from './regularExpressions';
 import { snippetCompletion, objectFunctionCompletion } from './autoCompletionItem';
 
+const documentStart = new vscode.Position(0, 0);
 
 export function getCodeBlockFromSnippet(snippet: string, includeBrackets: boolean = true) {
 
@@ -41,7 +45,6 @@ export function provideGlobalCompletionItems(document: vscode.TextDocument, posi
             commitCharacterCompletion.kind = vscode.CompletionItemKind.Class;
             commitCharacterCompletion.insertText = embeddedObject.name;
             commitCharacterCompletion.commitCharacters = ['.'];
-            //commitCharacterCompletion.documentation = new vscode.MarkdownString('Press `.` to get `console.`');
             commitCharacterCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
             results.push(commitCharacterCompletion);
         }
@@ -52,28 +55,23 @@ export function provideGlobalCompletionItems(document: vscode.TextDocument, posi
         //language structures: for, while, if ...
         snippetCompletion(language, linePrefix, results, vscode.CompletionItemKind.Snippet);
 
-        // embedded variables: i_item, i_home, i_datasource ...
-        for (let item of embeddedItemCompletions) {
-            const commitCharacterCompletion = new vscode.CompletionItem(item.name);
-            commitCharacterCompletion.kind = vscode.CompletionItemKind.Variable;
-            commitCharacterCompletion.insertText = item.name;
-            commitCharacterCompletion.commitCharacters = ['.'];
-            commitCharacterCompletion.documentation = new vscode.MarkdownString(item.description);
-            commitCharacterCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
-            results.push(commitCharacterCompletion);
-        }
     }
     return results;
 }
 
 export function provideFunctionCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
-    // get all text until the `position` and check if it reads `console.`
-    // and iff so then complete if `log`, `warn`, and `error`
+    // all text from beginning of the document to cursor position
+    let documentPrefix = document.getText(new vscode.Range(documentStart, position))
+
+    if (!isInScriban.test(documentPrefix)) {
+        return;
+    }
+
+    // all text from beginning of the line to cursor position
     let linePrefix = document.lineAt(position).text.substr(0, position.character);
 
     linePrefix = linePrefix.replace(stripFunctionNameFromLine, "$1");
-    // var textUntilPosition = document.getText(new vscode.Range(new vscode.Position(0,0), position));
 
     var results: vscode.CompletionItem[] = [];
 
@@ -98,15 +96,31 @@ export function provideFunctionCompletionItems(document: vscode.TextDocument, po
         }
     }
 
-    // embedded items
-    for (let embeddedItem of embeddedItems) {
-        var itemPrefix = embeddedItem + ".";
-        if (linePrefix.endsWith(itemPrefix)) {
-            itemMethods.forEach(element => {
-                results.push(objectFunctionCompletion(itemPrefix, element.name, element.template, element.description, vscode.CompletionItemKind.Property))
-            });
+    // embedded variables: i_item, i_home, i_datasource ...
+    for (let item of embeddedItemCompletions) {
+        const commitCharacterCompletion = new vscode.CompletionItem(item.name);
+        commitCharacterCompletion.kind = vscode.CompletionItemKind.Variable;
+        commitCharacterCompletion.insertText = item.name;
+        commitCharacterCompletion.commitCharacters = ['.'];
+        commitCharacterCompletion.documentation = new vscode.MarkdownString(item.description);
+        commitCharacterCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
+        results.push(commitCharacterCompletion);
+    }
 
-        }
+    // embedded item functions
+    if (isInFunctionCompletion.test(linePrefix)) {
+        var prefix = "i_item.";
+        itemMethods.forEach(element => {
+            results.push(objectFunctionCompletion(prefix, element.name, element.template, element.description, vscode.CompletionItemKind.Property))
+        });
+    }
+
+    // embedded item functions and field functions
+    if (isInFieldCompletion.test(linePrefix)) {
+        var prefix = "i_item.field.";
+        fieldMethods.forEach(element => {
+            results.push(objectFunctionCompletion(prefix, element.name, element.template, element.description, vscode.CompletionItemKind.Property))
+        });
     }
 
     return results;

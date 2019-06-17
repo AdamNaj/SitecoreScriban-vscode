@@ -1,15 +1,10 @@
 /*---------------------------------------------------------
- * Copyright (C) Adam Najmanowicz. All rights reserved.
+ * Copyright (C) 2019 - Adam Najmanowicz. All rights reserved.
  *--------------------------------------------------------*/
 
 'use strict';
 
 import * as vscode from 'vscode';
-import { languageObjects } from './languageObjects';
-import { itemMethods, embeddedItems, embeddedItemCompletions } from './sitecoreObjects';
-import { sitecoreFunctions } from './sitecoreFunctions';
-import { ScribanSnippet } from './types';
-import { language } from './languageSyntax';
 import { provideGlobalCompletionItems, provideFunctionCompletionItems } from './autoCompletion';
 
 export function activate(context: vscode.ExtensionContext) {

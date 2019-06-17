@@ -13,7 +13,7 @@
     {{ if (i_item.VideoID.raw ) == "" && (i_item.VideoThumbnail.raw) == "" }}
       <span>[Edit Gallery Video here]</span>
     {{ else }}
-      <a title="{{i_item.VideoTitle.raw }}" href="http://www.youtube.com/watch?v={{ i_item.VideoID.raw }}">
+      <a title="{{ i_item.VideoTitle.raw }}" href="http://www.youtube.com/watch?v={{ i_item.VideoID.raw }}">
         <img src="{{ o_model.thumbnail_url }}" alt="{{ i_item.VideoDescription.raw }}" 
              data-title="{{ i_item.VideoTitle.raw }}" data-description="{{ i_item.VideoDescription.raw }}" ></img>
       </a>

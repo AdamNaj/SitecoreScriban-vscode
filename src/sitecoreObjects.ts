@@ -1,8 +1,6 @@
 /*---------------------------------------------------------
- * Copyright (C) Adam Najmanowicz. All rights reserved.
+ * Copyright (C) 2019 - Adam Najmanowicz. All rights reserved.
  *--------------------------------------------------------*/
-
-export const embeddedItems = ["i_home", "i_item", "i_site", "i_datasource", "i_page"];
 
 export const embeddedItemCompletions = [
 	{

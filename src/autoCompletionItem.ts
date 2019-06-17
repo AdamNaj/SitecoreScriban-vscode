@@ -1,11 +1,11 @@
-import * as vscode from 'vscode';
-import { languageObjects } from './languageObjects';
-import { itemMethods, embeddedItems, embeddedItemCompletions } from './sitecoreObjects';
-import { sitecoreFunctions } from './sitecoreFunctions';
+/*---------------------------------------------------------
+ * Copyright (C) 2019 - Adam Najmanowicz. All rights reserved.
+ *--------------------------------------------------------*/
+
+ import * as vscode from 'vscode';
 import { ScribanSnippet } from './types';
-import { language } from './languageSyntax';
 import { getCodeBlockFromSnippet } from './autoCompletion';
-import { isInMoustaches, lineHasPipe, snippetVariableCleanup } from './regularExpressions';
+import { isInScriban, lineHasPipe, snippetVariableCleanup } from './regularExpressions';
 
 export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string, results: vscode.CompletionItem[], kind: vscode.CompletionItemKind) {
 	for (let snippet of snippets) {
@@ -13,7 +13,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 		commitCharacterCompletion.kind = kind;
 		commitCharacterCompletion.commitCharacters = ['.'];
 		commitCharacterCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
-		var inMoustaches = isInMoustaches.test(linePrefix);
+		var inMoustaches = isInScriban.test(linePrefix);
 		//commitCharacterCompletion.detail = snippet.description;
 
 		// for snippets that can only be insertedin special context like "offset:" in "for" loop.

@@ -1,6 +1,10 @@
+/*---------------------------------------------------------
+ * Copyright (C) 2019 - Adam Najmanowicz. All rights reserved.
+ *--------------------------------------------------------*/
+
 export const lineHasPipe = new RegExp(/[{]([^}\n]+)\|\s+\w+$/);
 
-export const isInMoustaches = new RegExp(/[{]([^}]+)$/g);
+export const isInScriban = new RegExp(/[{]([^}]+)$/g);
 /* regex test data
 
 Following line should not match
@@ -10,6 +14,7 @@ Following line should match:
 {{ sc_endeditframe  
 
 */
+
 export const stripFunctionNameFromLine = new RegExp(/(\w*\.)(\w*)$/g); // linePrefix.replace(stripFunctionNameFromLine,"$1");
 
 export const isInFunctionCompletion = new RegExp(/(\w*\.\w*)$/g);
@@ -29,3 +34,17 @@ export const codeBlockFromTemplate  = new RegExp(/(\$[{]*\d+[:|]*)([\w\s-\.]*)([
 */
 
 export const snippetVariableCleanup = new RegExp(/(\${\d+:)|(})/g);
+
+export const isInItemCompletion = new RegExp(/(i_[\w.]*)$/g);
+/* regex test data
+
+    i_item.parent
+    i_item.parent.name
+*/
+
+export const isInFieldCompletion = new RegExp(/(i_\w*\.\w*\.[\w\.]*)$/g);
+/* regex test data
+
+    i_item.parent.name
+    i_item.parent.
+*/
