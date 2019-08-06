@@ -10,6 +10,7 @@
             "args": [
                 "--extensionDevelopmentPath=${workspaceRoot}",
                 "${workspaceFolder}\\.examples\\gallery.scriban", 
+                "${workspaceFolder}\\.examples\\promo.scriban", 
                 "${workspaceFolder}\\.examples\\empty.scriban" 
             ],
             "outFiles": [

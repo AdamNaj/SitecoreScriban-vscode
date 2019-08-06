@@ -1,22 +1,26 @@
-{{ if sc_evaluate i_item "Is Image" # example of rule evaluation }}
-  {{ sc_editframe i_item "Gallery Image" # example of edit frame }}
+{{- #        ↓ Name of the item template -}}
+{{ if i_item.template_name == "Gallery Image" }}
 <a class="field-image">
-    <a title="{{ i_item.ImageTitle.Raw }}" {{ # raw value from a field }} href="{{i_item.Image.media_url }}"> {{ # get link from a linked media item }}
-       {{ sc_field i_item ["Link2", "Image2", "Image"] [["data-2",2],[3,4], "ssss"] }}
+
+    {{- #       ↓ raw value from the field          ↓ media url from a field -}}
+    <a title="{{ i_item.ImageTitle.raw }}" href="{{ i_item.Image.media_url }}"> 
+
+    {{- # ↓ item.FieldName - renders Sitecore field -}}
+       {{ i_item.Image }}
     </a>
 </a>
-  {{ sc_endeditframe }}
 {{end}}
 
+{{- # ↓ conditional statement }}
 {{ if i_item.template_name == "Gallery Video" }}
-  {{ sc_editframe i_item "Gallery Video" }}
     {{ if (i_item.VideoID.raw ) == "" && (i_item.VideoThumbnail.raw) == "" }}
       <span>[Edit Gallery Video here]</span>
     {{ else }}
-      <a title="{{ i_item.VideoTitle.raw }}" href="http://www.youtube.com/watch?v={{ i_item.VideoID.raw }}">
-        <img src="{{ o_model.thumbnail_url }}" alt="{{ i_item.VideoDescription.raw }}" 
+      <a title="{{i_item.VideoTitle.raw }}" href="http://www.youtube.com/watch?v={{ i_item.VideoID.raw }}">
+
+      {{- #        ↓ access model properties  }}
+      <img src="{{ o_model.thumbnail_url }}" alt="{{ i_item.VideoDescription.raw }}" 
              data-title="{{ i_item.VideoTitle.raw }}" data-description="{{ i_item.VideoDescription.raw }}" ></img>
       </a>
     {{end}}
-  {{ sc_endeditframe }}
 {{end}}

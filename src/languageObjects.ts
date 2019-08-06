@@ -15,7 +15,7 @@ export const languageObjects = [
 			{
 				"name": "add_range",
 				"template": "add_range ${1:<list1>} ${2:<list2>}",
-				"description": "Appends <__list2__> to another list from pipeline",
+				"description": "Appends <__list2__> to list <__list1__> and return the resulting list",
 				"pipeTemplate": "add_range ${1:<list2>}",
 			},
 			{
@@ -27,7 +27,7 @@ export const languageObjects = [
 			{
 				"name": "concat",
 				"template": "concat ${1:<list2>}",
-				"description": "Appends <__list2__> to another list from pipeline",
+				"description": "Appends <__list2__> to list <__list1__> and return the resulting list",
 				"pipeTemplate": "concat ${1:<list1>} ${2:<list2>}",
 			},
 			{

@@ -91,7 +91,7 @@ export const language: ScribanSnippet[] = [
         "description": "For loop, iterating over collection",
         "validationRegEx": "",
         "template": [
-            "{{ for ${1:item} in ${2:collection} }}",
+            "{{ for ${1:var} in ${2:collection} }}",
             "\t$3",
             "{{ end }}"
         ],

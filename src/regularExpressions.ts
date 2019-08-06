@@ -34,17 +34,3 @@ export const codeBlockFromTemplate  = new RegExp(/(\$[{]*\d+[:|]*)([\w\s-\.]*)([
 */
 
 export const snippetVariableCleanup = new RegExp(/(\${\d+:)|(})/g);
-
-export const isInItemCompletion = new RegExp(/(i_[\w.]*)$/g);
-/* regex test data
-
-    i_item.parent
-    i_item.parent.name
-*/
-
-export const isInFieldCompletion = new RegExp(/(i_\w*\.\w*\.[\w\.]*)$/g);
-/* regex test data
-
-    i_item.parent.name
-    i_item.parent.
-*/

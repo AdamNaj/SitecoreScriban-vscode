@@ -42,93 +42,201 @@ export const embeddedItemCompletions = [
 		"name": "o_geospatial",
 		"template": "o_geospatial",
 		"description": "geospatial helper",
+	},
+	{
+		"name": "o_context",
+		"template": "o_context",
+		"description": "Sitecore Context",
+	},
+	{
+		"name": "o_pagemode",
+		"template": "o_pagemode",
+		"description": "Sitecore Page Mode",
 	}
 ]
 
-export const itemMethods =
+export const methods =
 	[
 		{
 			"name": "...",
 			"template": "",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "Type the name of the field to use it. (cannot contain spaces)",
 		},
 		{
 			"name": "template_name",
 			"template": "template_name",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "children",
 			"template": "children",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "parent",
 			"template": "parent",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "template_id",
 			"template": "template_id",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "version",
 			"template": "version",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "path",
 			"template": "path",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "language",
 			"template": "language",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "has_children",
 			"template": "has_children",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "display_name",
 			"template": "display_name",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "name",
 			"template": "name",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "url",
 			"template": "url",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
 		},
 		{
 			"name": "media_url",
 			"template": "media_url",
+			"prefix": "i_item.",
+			"validationRegEx": "(i_[\\w.]*)$",
 			"description": "",
-		}
-	];
-
-	export const fieldMethods =
-	[
+		},
 		{
 			"name": "raw",
 			"template": "raw",
+			"prefix": "i_item.field.",
+			"validationRegEx": "(i_\\w*\\.\\w*\\.[\\w\\.]*)$",
 			"description": "",
 		},
 		{
 			"name": "target",
 			"template": "target",
+			"prefix": "i_item.field.",
+			"validationRegEx": "(i_\\w*\\.\\w*\\.[\\w\\.]*)$",
 			"description": "",
 		},
 		{
 			"name": "targets",
 			"template": "targets",
+			"prefix": "i_item.field.",
+			"validationRegEx": "(i_\\w*\\.\\w*\\.[\\w\\.]*)$",
+			"description": "",
+		},
+		{
+			"name": "is_debugging",
+			"template": "is_debugging",
+			"prefix": "o_pagemode.",
+			"validationRegEx": "(o_pagemode\\.[\\w]*)$",
+			"description": "",
+		},
+		{
+			"name": "is_experience_editor",
+			"template": "is_experience_editor",
+			"prefix": "o_pagemode.",
+			"validationRegEx": "(o_pagemode\\.[\\w]*)$",
+			"description": "",
+		},
+		{
+			"name": "is_experience_editor",
+			"template": "is_experience_editor",
+			"prefix": "o_pagemode.",
+			"validationRegEx": "(o_pagemode\\.[\\w]*)$",
+			"description": "",
+		},
+		{
+			"name": "is_experience_editor_editing",
+			"template": "is_experience_editor_editing",
+			"prefix": "o_pagemode.",
+			"validationRegEx": "(o_pagemode\\.[\\w]*)$",
+			"description": "",
+		},
+		{
+			"name": "is_normal",
+			"template": "is_normal",
+			"prefix": "o_pagemode.",
+			"validationRegEx": "(o_pagemode\\.[\\w]*)$",
+			"description": "",
+		},
+		{
+			"name": "is_preview",
+			"template": "is_preview",
+			"prefix": "o_pagemode.",
+			"validationRegEx": "(o_pagemode\\.[\\w]*)$",
+			"description": "",
+		},
+		{
+			"name": "is_simulated_device_previewing",
+			"template": "is_simulated_device_previewing",
+			"prefix": "o_pagemode.",
+			"validationRegEx": "(o_pagemode\\.[\\w]*)$",
+			"description": "",
+		},
+		{
+			"name": "is_profiling",
+			"template": "is_profiling",
+			"prefix": "o_pagemode.",
+			"validationRegEx": "(o_pagemode\\.[\\w]*)$",
+			"description": "",
+		},
+		{
+			"name": "is_administrator",
+			"template": "is_administrator",
+			"prefix": "o_context.",
+			"validationRegEx": "(o_context\\.[\\w]*)$",
+			"description": "",
+		},
+		{
+			"name": "user",
+			"template": "user",
+			"prefix": "o_context.",
+			"validationRegEx": "(o_context\\.[\\w]*)$",
 			"description": "",
 		},
 	];

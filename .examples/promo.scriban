@@ -1,0 +1,13 @@
+<div class="field-promoicon">
+    {{ i_item.PromoIcon }}
+</div>
+<div class="promo-text">
+    <div>
+        <div class="field-promotext">
+        {{ i_item.PromoText }}
+        </div>
+    </div>
+    <div class="field-promolink">
+        {{ i_item.PromoLink }}
+    </div>
+</div>
