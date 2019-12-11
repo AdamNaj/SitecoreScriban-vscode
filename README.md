@@ -8,7 +8,7 @@ This extension allows to colorize Sitecore Experience Accelerator Scriban-Html s
 - Supports auto complete for Scriban language auto complete including embedded objects.
 - Supports auto complete for OOTB Sitecore Experience Accelerator functions and objects.
 
-## 0.1.1
+## 0.1.2
 - More accurate extension descriptions
 - Improvements to snippets
 - Descriptions synchonized with the documentation
