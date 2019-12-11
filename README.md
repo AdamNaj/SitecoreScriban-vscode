@@ -1,12 +1,20 @@
 # Scriban Syntax Coloring extension for Visual Studio Code
 
-This extension allows to colorize Scriban scripts and Scriban-Html scripts following the syntax of the [scriban templating language](https://github.com/lunet-io/scriban)
+This extension allows to colorize Sitecore Experience Accelerator Scriban-Html scripts following the syntax of the [scriban templating language](https://github.com/lunet-io/scriban) with [SXA extensions](https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/scriban-templates.html)
 
 ## Features
 
-- Mixed **scriban and HTML** (using `{{` and `}}` to enter scriban) with the expected file extensions:
-  - `.scriban`
+- Mixed **Scriban and HTML** (using `{{` and `}}` to enter scriban) with the `.scriban` file extension.
+- Supports auto complete for Scriban language auto complete including embedded objects.
+- Supports auto complete for OOTB Sitecore Experience Accelerator functions and objects.
 
+## 0.1.1
+- More accurate extension descriptions
+- Improvements to snippets
+- Descriptions synchonized with the documentation
+- Verified and supplemented list of full extensions
+- More links to documentation in auto-complete tooltips
+- i_item extensions no longer erroneously appear as available options for fields auto completion.
 
 ## 0.1.0
 - Support for mixed `Scriban` and `HTML` grammar

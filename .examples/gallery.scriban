@@ -1,26 +1,34 @@
-{{- #        ↓ Name of the item template -}}
-{{ if i_item.template_name == "Gallery Image" }}
-<a class="field-image">
-
+{{- #       ↓ Name of the item template -
+  if i_item.template_name == "Gallery Image" 
+    sc_editframe i_item 'Gallery Image' -}}
+    <a class="field-image">
+      
     {{- #       ↓ raw value from the field          ↓ media url from a field -}}
-    <a title="{{ i_item.ImageTitle.raw }}" href="{{ i_item.Image.media_url }}"> 
+      <a title="{{ i_item.ImageTitle.raw }}" href="{{ i_item.Image.media_url }}"> 
 
     {{- # ↓ item.FieldName - renders Sitecore field -}}
-       {{ i_item.Image }}
-    </a>
-</a>
-{{end}}
+      {{ i_item.Image }}
 
-{{- # ↓ conditional statement }}
-{{ if i_item.template_name == "Gallery Video" }}
-    {{ if (i_item.VideoID.raw ) == "" && (i_item.VideoThumbnail.raw) == "" }}
+      </a>
+    </a>{{
+    sc_endeditframe
+  end}}
+
+{{- # ↓ conditional statement
+  if i_item.template_name == "Gallery Video"  
+    sc_editframe i_item 'Gallery Video'
+    if (i_item.VideoID.raw ) == "" && (i_item.VideoThumbnail.raw) == "" -}}
+
       <span>[Edit Gallery Video here]</span>
-    {{ else }}
-      <a title="{{i_item.VideoTitle.raw }}" href="http://www.youtube.com/watch?v={{ i_item.VideoID.raw }}">
 
-      {{- #        ↓ access model properties  }}
+    {{- else -}}
+
+      <a title="{{i_item.VideoTitle.raw }}" href="http://www.youtube.com/watch?v={{ i_item.VideoID.raw }}">
+      {{- #                ↓ access model properties  -}}
+      
       <img src="{{ o_model.thumbnail_url }}" alt="{{ i_item.VideoDescription.raw }}" 
              data-title="{{ i_item.VideoTitle.raw }}" data-description="{{ i_item.VideoDescription.raw }}" ></img>
-      </a>
-    {{end}}
-{{end}}
+      </a>{{
+    end
+    sc_endeditframe
+  end }}

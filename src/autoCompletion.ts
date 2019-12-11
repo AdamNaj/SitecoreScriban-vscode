@@ -7,7 +7,7 @@ import { languageObjects } from './languageObjects';
 import { methods, embeddedItemCompletions } from './sitecoreObjects';
 import { sitecoreFunctions } from './sitecoreFunctions';
 import { language } from './languageSyntax';
-import { isInFunctionCompletion, codeBlockFromTemplate, stripFunctionNameFromLine, isInScriban } from './regularExpressions';
+import { isInFunctionCompletion, codeBlockFromTemplate, stripFunctionNameFromLine } from './regularExpressions';
 import { snippetCompletion, objectFunctionCompletion } from './autoCompletionItem';
 
 const documentStart = new vscode.Position(0, 0);
@@ -55,10 +55,10 @@ export function provideGlobalCompletionItems(document: vscode.TextDocument, posi
         }
 
         // sitecore functions: sc_field, sc_translate ...
-        snippetCompletion(sitecoreFunctions, linePrefix, results, vscode.CompletionItemKind.Function);
+        snippetCompletion(sitecoreFunctions, linePrefix, results, vscode.CompletionItemKind.Function, "https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/the-embedded-functions-for-the-scriban-template.html");
 
         //language structures: for, while, if ...
-        snippetCompletion(language, linePrefix, results, vscode.CompletionItemKind.Snippet);
+        snippetCompletion(language, linePrefix, results, vscode.CompletionItemKind.Snippet, "https://github.com/lunet-io/scriban/blob/master/doc/language.md");
 
     }
     return results;
@@ -68,7 +68,8 @@ export function provideFunctionCompletionItems(document: vscode.TextDocument, po
 
     // all text from beginning of the document to cursor position
     let documentPrefix = document.getText(new vscode.Range(documentStart, position))
-
+    const isInScriban = new RegExp(/[{]([^}]+)$/g);
+    
     if (!isInScriban.test(documentPrefix)) {
         return;
     }
@@ -105,7 +106,14 @@ export function provideFunctionCompletionItems(document: vscode.TextDocument, po
     methods.forEach(element => {
         var validationRegex = new RegExp(element.validationRegEx);
         if (validationRegex.test(linePrefix)) {
-            results.push(objectFunctionCompletion(element.prefix, element.name, element.template, element.description, vscode.CompletionItemKind.Property))
+            var description = element.description
+            if(element.prefix === "i_item."){
+                description = description + "... [more](https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/item-and-field-extensions.html)";
+            } else {
+                description = description + "... [more](https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/the-embedded-functions-for-the-scriban-template.html)";
+            }
+
+            results.push(objectFunctionCompletion(element.prefix, element.name, element.template, description, vscode.CompletionItemKind.Property))
         }
     });
 
@@ -116,7 +124,8 @@ export function provideFunctionCompletionItems(document: vscode.TextDocument, po
             commitCharacterCompletion.kind = vscode.CompletionItemKind.Variable;
             commitCharacterCompletion.insertText = item.name;
             commitCharacterCompletion.commitCharacters = ['.'];
-            commitCharacterCompletion.documentation = new vscode.MarkdownString(item.description);
+            var description = item.description + "... [more](https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/the-embedded-items-and-objects-in-the-scriban-context.html)";
+            commitCharacterCompletion.documentation = new vscode.MarkdownString(description);
             commitCharacterCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
             results.push(commitCharacterCompletion);
         }

@@ -1,0 +1,27 @@
+<div class="product-summary" data-id="{{ i_item.name }}">
+    {{ displayName = i_item.display_name | html.escape }}
+    <a title="{{ displayName }}" href="{{ i_item.url }}">
+        <div class="product-photo">
+            {{
+                productImage = i_item.images.targets | array.first
+                if productImage
+                    mediaUrl = productImage.media_url
+                end
+            }}
+            <img src="{{ mediaUrl }}" />
+        </div>
+    </a>
+    <div class="product-info">
+        <a class="product-title" title="{{ displayName }}" href="{{ i_item.url }}">
+            {{ displayName }}
+        </a>
+        <div class="product-brand">
+            {{ i_item.brand }}
+        </div>
+        <div class="product-detail">
+            <a class="product-link" title="{{ displayName }}" href="{{ i_item.url }}">
+                {{ sc_translate 'DETAILS' }}
+            </a>
+        </div>
+    </div>
+</div>

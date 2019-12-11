@@ -124,11 +124,4 @@ export const sitecoreFunctions = [
         "template": "sc_parameter '${1:Parameter Name}'",
         "pipeTemplate": "sc_parameter",
     },
-    {
-        "name": "",
-        "description": "",
-        "validationRegEx": "",
-        "template": "",
-        "pipeTemplate": "",
-    },
 ];

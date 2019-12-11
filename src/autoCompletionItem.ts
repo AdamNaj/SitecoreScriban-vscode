@@ -2,12 +2,13 @@
  * Copyright (C) 2019 - Adam Najmanowicz. All rights reserved.
  *--------------------------------------------------------*/
 
- import * as vscode from 'vscode';
+import * as vscode from 'vscode';
 import { ScribanSnippet } from './types';
 import { getCodeBlockFromSnippet } from './autoCompletion';
-import { isInScriban, lineHasPipe, snippetVariableCleanup } from './regularExpressions';
+import { lineHasPipe, snippetVariableCleanup } from './regularExpressions';
 
-export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string, results: vscode.CompletionItem[], kind: vscode.CompletionItemKind) {
+export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string, results: vscode.CompletionItem[], kind: vscode.CompletionItemKind, helpUrl: String) {
+	const isInScriban = new RegExp(/[{]([^}]+)$/g);
 	for (let snippet of snippets) {
 		const commitCharacterCompletion = new vscode.CompletionItem(snippet.name);
 		commitCharacterCompletion.kind = kind;
@@ -24,6 +25,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 			}
 		}
 
+		let description = new vscode.MarkdownString(snippet.description+"... [more]("+ helpUrl +")");
 		if (inMoustaches) {
 
 			// if inside moustache block {{ }}					
@@ -33,7 +35,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 					continue;
 				}
 				commitCharacterCompletion.insertText = new vscode.SnippetString(snippet.pipeTemplate + " ");
-				commitCharacterCompletion.documentation = new vscode.MarkdownString(snippet.description).appendCodeblock(getCodeBlockFromSnippet(snippet.pipeTemplate)).appendCodeblock("\n \n "); // (snippet.pipeCodeBlock);
+				commitCharacterCompletion.documentation = description.appendCodeblock(getCodeBlockFromSnippet(snippet.pipeTemplate)).appendCodeblock("\n \n "); // (snippet.pipeCodeBlock);
 			} else {
 				// if not after pipe, just within moustaches {{ ... }}
 				//template must be wrapped with moustaches - those are used inside of pure-HTML snippets
@@ -47,7 +49,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 					continue;
 				}
 				commitCharacterCompletion.insertText = new vscode.SnippetString(template);
-				commitCharacterCompletion.documentation = new vscode.MarkdownString(snippet.description).appendCodeblock(getCodeBlockFromSnippet(template)).appendCodeblock("\n \n ") // snippet.codeBlock);
+				commitCharacterCompletion.documentation = description.appendCodeblock(getCodeBlockFromSnippet(template)).appendCodeblock("\n \n ") // snippet.codeBlock);
 			}
 		} else {
 
@@ -60,7 +62,7 @@ export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string
 				documentation = getCodeBlockFromSnippet(snippet.template.join("\n"), false);
 			}
 
-			commitCharacterCompletion.documentation = new vscode.MarkdownString(snippet.description).appendCodeblock(documentation).appendCodeblock("\n "); // snippet.codeBlock);
+			commitCharacterCompletion.documentation = description.appendCodeblock(documentation).appendCodeblock("\n "); // snippet.codeBlock);
 		}
 		results.push(commitCharacterCompletion);
 	}

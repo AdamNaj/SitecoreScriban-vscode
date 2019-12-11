@@ -1,8 +1,8 @@
 {
 	"name": "sitecore-scriban",
 	"displayName": "Sitecore Scriban",
-	"description": "Syntax Coloring for Scriban Templating Language with Sitecore Extensions",
-	"version": "0.1.0",
+	"description": "Scriban Templates syntax coloring and auto completion for Sitecore Experience Accelerator (SXA)",
+	"version": "0.1.1",
 	"publisher": "adamnaj",
 	"repository": {
 		"type": "git",
