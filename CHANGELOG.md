@@ -1,6 +1,6 @@
 # Change Log
 
-Sitecore Experience Accelerator Scriban syntax coloring and auto completion for known objects - Extension for Visual Studio Code
+Sitecore Experience Accelerator Scriban syntax coloring and auto completion - Extension for Visual Studio Code
 
 ## 0.1.1
 - More accurate extension descriptions
