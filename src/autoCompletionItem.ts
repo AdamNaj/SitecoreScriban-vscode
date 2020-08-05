@@ -5,17 +5,17 @@
 import * as vscode from 'vscode';
 import { ScribanSnippet } from './types';
 import { getCodeBlockFromSnippet } from './autoCompletion';
-import { lineHasPipe, snippetVariableCleanup } from './regularExpressions';
+import { lineHasPipe, snippetVariableCleanup, isInScriban } from './regularExpressions';
 
 export function snippetCompletion(snippets: ScribanSnippet[], linePrefix: string, results: vscode.CompletionItem[], kind: vscode.CompletionItemKind, helpUrl: String) {
-	const isInScriban = new RegExp(/[{]([^}]+)$/g);
+	
 	for (let snippet of snippets) {
 		const commitCharacterCompletion = new vscode.CompletionItem(snippet.name);
 		commitCharacterCompletion.kind = kind;
 		commitCharacterCompletion.commitCharacters = ['.'];
 		commitCharacterCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
 		var inMoustaches = isInScriban.test(linePrefix);
-		//commitCharacterCompletion.detail = snippet.description;
+		//commitCharacterCompletion.detail = snippet.description;		
 
 		// for snippets that can only be insertedin special context like "offset:" in "for" loop.
 		if (snippet.validationRegEx !== "") {

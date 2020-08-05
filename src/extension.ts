@@ -10,23 +10,22 @@ import { provideGlobalCompletionItems, provideFunctionCompletionItems } from './
 export function activate(context: vscode.ExtensionContext) {
 
 
-	let rootProvider = vscode.languages.registerCompletionItemProvider('scriban', {
+    let rootProvider = vscode.languages.registerCompletionItemProvider('scriban', {
 
-		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
-			return provideGlobalCompletionItems(document,position,token,context);
-		},
-	});
+        provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
+            return provideGlobalCompletionItems(document, position, token, context);
+        },
+    });
 
 
-	const methodProvider = vscode.languages.registerCompletionItemProvider(
-		'scriban',
-		{
-			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
-				return provideFunctionCompletionItems(document,position);
-			}
-		},
-		'.' // triggered whenever a '.' is being typed
-	);
+    const methodProvider = vscode.languages.registerCompletionItemProvider(
+        'scriban',
+        {
+            provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+                return provideFunctionCompletionItems(document, position);
+            }
+        },
+        '.' // triggered whenever a '.' is being typed
+    );
 
-	context.subscriptions.push(rootProvider, methodProvider);
 }

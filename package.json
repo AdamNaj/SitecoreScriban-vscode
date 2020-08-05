@@ -2,7 +2,7 @@
 	"name": "sitecore-scriban",
 	"displayName": "Sitecore Scriban",
 	"description": "Scriban Templates syntax coloring and auto completion for Sitecore Experience Accelerator (SXA)",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"publisher": "adamnaj",
 	"repository": {
 		"type": "git",
@@ -68,8 +68,12 @@
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",
-		"tslint": "^5.16.0",
-		"typescript": "^3.4.5",
-		"@types/vscode": "^1.32.0"
+		"@types/vscode": "^1.32.0",
+		"tslint": "^5.20.1",
+		"typescript": "^3.4.5"
+	},
+	"dependencies": {
+		"@types/follow-redirects": "^1.8.0",
+		"follow-redirects": "^1.11.0"
 	}
 }

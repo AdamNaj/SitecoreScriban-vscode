@@ -7,7 +7,7 @@ import { languageObjects } from './languageObjects';
 import { methods, embeddedItemCompletions } from './sitecoreObjects';
 import { sitecoreFunctions } from './sitecoreFunctions';
 import { language } from './languageSyntax';
-import { isInFunctionCompletion, codeBlockFromTemplate, stripFunctionNameFromLine } from './regularExpressions';
+import { isInFunctionCompletion, codeBlockFromTemplate, stripFunctionNameFromLine, isInScriban } from './regularExpressions';
 import { snippetCompletion, objectFunctionCompletion } from './autoCompletionItem';
 
 const documentStart = new vscode.Position(0, 0);
@@ -67,9 +67,8 @@ export function provideGlobalCompletionItems(document: vscode.TextDocument, posi
 export function provideFunctionCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
     // all text from beginning of the document to cursor position
-    let documentPrefix = document.getText(new vscode.Range(documentStart, position))
-    const isInScriban = new RegExp(/[{]([^}]+)$/g);
-    
+    let documentPrefix = document.getText(new vscode.Range(documentStart, position));
+
     if (!isInScriban.test(documentPrefix)) {
         return;
     }
