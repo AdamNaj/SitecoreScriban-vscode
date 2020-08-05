@@ -107,9 +107,9 @@ export function provideFunctionCompletionItems(document: vscode.TextDocument, po
         if (validationRegex.test(linePrefix)) {
             var description = element.description
             if(element.prefix === "i_item."){
-                description = description + "... [more](https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/item-and-field-extensions.html)";
+                description = description + "... [more](https://doc.sitecore.com/developers/sxa/100/sitecore-experience-accelerator/en/item-and-field-extensions.html)";
             } else {
-                description = description + "... [more](https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/the-embedded-functions-for-the-scriban-template.html)";
+                description = description + "... [more](https://doc.sitecore.com/developers/sxa/100/sitecore-experience-accelerator/en/the-embedded-functions-for-the-scriban-template.html)";
             }
 
             results.push(objectFunctionCompletion(element.prefix, element.name, element.template, description, vscode.CompletionItemKind.Property))
@@ -123,7 +123,7 @@ export function provideFunctionCompletionItems(document: vscode.TextDocument, po
             commitCharacterCompletion.kind = vscode.CompletionItemKind.Variable;
             commitCharacterCompletion.insertText = item.name;
             commitCharacterCompletion.commitCharacters = ['.'];
-            var description = item.description + "... [more](https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/the-embedded-items-and-objects-in-the-scriban-context.html)";
+            var description = item.description + "... [more](https://doc.sitecore.com/developers/sxa/100/sitecore-experience-accelerator/en/the-embedded-items-and-objects-in-the-scriban-context.html)";
             commitCharacterCompletion.documentation = new vscode.MarkdownString(description);
             commitCharacterCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
             results.push(commitCharacterCompletion);
