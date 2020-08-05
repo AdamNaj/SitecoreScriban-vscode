@@ -55,7 +55,7 @@ export function provideGlobalCompletionItems(document: vscode.TextDocument, posi
         }
 
         // sitecore functions: sc_field, sc_translate ...
-        snippetCompletion(sitecoreFunctions, linePrefix, results, vscode.CompletionItemKind.Function, "https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/the-embedded-functions-for-the-scriban-template.html");
+        snippetCompletion(sitecoreFunctions, linePrefix, results, vscode.CompletionItemKind.Function, "https://doc.sitecore.com/developers/sxa/100/sitecore-experience-accelerator/en/the-embedded-functions-for-the-scriban-template.html");
 
         //language structures: for, while, if ...
         snippetCompletion(language, linePrefix, results, vscode.CompletionItemKind.Snippet, "https://github.com/lunet-io/scriban/blob/master/doc/language.md");

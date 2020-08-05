@@ -1,6 +1,6 @@
 # Sitecore Experience Accelerator Scriban syntax coloring and auto completion
 
-This extension allows to colorize Sitecore Experience Accelerator Scriban-Html scripts following the syntax of the [scriban templating language](https://github.com/lunet-io/scriban) with [SXA extensions](https://doc.sitecore.com/developers/sxa/93/sitecore-experience-accelerator/en/scriban-templates.html)
+This extension allows to colorize Sitecore Experience Accelerator Scriban-Html scripts following the syntax of the [scriban templating language](https://github.com/lunet-io/scriban) with [SXA extensions](https://doc.sitecore.com/developers/sxa/100/sitecore-experience-accelerator/en/scriban-templates.html)
 
 ![screenshot](/screenshot.png)
 
