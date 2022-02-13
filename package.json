@@ -80,6 +80,6 @@
 	},
 	"dependencies": {
 		"@types/follow-redirects": "^1.8.0",
-		"follow-redirects": "^1.11.0"
+		"follow-redirects": "^1.14.8"
 	}
 }
